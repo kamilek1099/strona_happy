@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#F5FAF0" />
+  <title>Be Happy Everyday - Coming Soon</title>
+  <meta name="description" content="One beautiful message every day to brighten your mood. Coming soon to iOS and Android." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #F5FAF0;
+      --col: #6B8B5A;
+      --btn: #D8E8D0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--col);
+      transition: background 0.5s, color 0.5s;
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ──────────────────────────────────────────────────── */
+    nav.topnav {
+      display: flex;
+      justify-content: flex-end;
+      padding: 16px 40px;
+    }
+
+    .lang-switcher {
+      display: flex;
+      gap: 4px;
+    }
+
+    .lang-btn {
+      font-family: 'Outfit', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      background: none;
+      border: none;
+      color: var(--col);
+      opacity: 0.35;
+      cursor: pointer;
+      padding: 6px 10px;
+      border-radius: 6px;
+      transition: opacity 0.2s, background 0.2s;
+    }
+
+    .lang-btn.active,
+    .lang-btn:hover {
+      opacity: 0.8;
+      background: var(--btn);
+    }
+
+    @media (max-width: 640px) {
+      nav.topnav {
+        padding: 12px 24px;
+      }
+    }
+
+    /* ─── HERO ──────────────────────────────────────────────────── */
+    #hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: calc(80vh - 56px);
+      padding: 60px 24px 40px;
+      text-align: center;
+    }
+
+    .hero-eyebrow {
+      font-family: 'Outfit', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--col);
+      opacity: 0;
+      animation: fadeIn 0.8s 0.2s forwards;
+      margin-bottom: 20px;
+    }
+
+    .hero-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(40px, 9vw, 84px);
+      font-weight: 300;
+      color: var(--col);
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      opacity: 0;
+      animation: fadeIn 1s 0.4s forwards;
+      margin-bottom: 24px;
+    }
+
+    .hero-tagline {
+      font-size: clamp(15px, 2.2vw, 18px);
+      font-weight: 300;
+      color: var(--col);
+      opacity: 0;
+      animation: fadeIn 1s 0.7s forwards;
+      max-width: 440px;
+      line-height: 1.65;
+      margin-bottom: 40px;
+    }
+
+    /* ─── COMING SOON STORE BADGES (NON-CLICKABLE) ──────────────── */
+    .badge-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      opacity: 0;
+      animation: fadeIn 1s 0.9s forwards;
+      margin-bottom: 48px;
+    }
+
+    .badge-label {
+      font-family: 'Outfit', sans-serif;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--col);
+      opacity: 0.45;
+    }
+
+    .store-badges {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .store-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 22px;
+      background: color-mix(in srgb, var(--col) 4%, transparent);
+      border: 1.5px solid color-mix(in srgb, var(--col) 12%, transparent);
+      color: var(--col);
+      border-radius: 14px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      opacity: 0.7;
+      cursor: default;
+      transition: all 0.3s ease;
+      user-select: none;
+    }
+
+    .store-badge svg {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+    }
+
+    /* ─── HERO INTERACTIVE QUOTE ────────────────────────────────── */
+    .hero-quote-wrap {
+      opacity: 0;
+      animation: fadeIn 1s 1.1s forwards;
+      margin-top: 10px;
+    }
+
+    .hero-quote {
+      font-size: clamp(72px, 13vw, 110px);
+      line-height: 1;
+      cursor: pointer;
+      transition: opacity 0.28s ease, transform 0.28s ease;
+      user-select: none;
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    .hero-quote:hover {
+      transform: scale(1.1) rotate(5deg);
+    }
+
+    .hero-quote:active {
+      transform: scale(0.92);
+    }
+
+    .hero-quote-hint {
+      font-family: 'Outfit', sans-serif;
+      font-size: 11px;
+      color: var(--col);
+      opacity: 0.35;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    /* ─── THEME PICKER ──────────────────────────────────────────── */
+    #themes {
+      padding: 60px 40px;
+      text-align: center;
+    }
+
+    .themes-eyebrow {
+      font-family: 'Outfit', sans-serif;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--col);
+      opacity: 0.45;
+      margin-bottom: 28px;
+    }
+
+    .swatches {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .swatch {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s;
+    }
+
+    .swatch:hover {
+      transform: scale(1.2);
+    }
+
+    .swatch.active {
+      transform: scale(1.1);
+    }
+
+    /* ─── FEATURES ──────────────────────────────────────────────── */
+    #features {
+      padding: 60px 40px 80px;
+      max-width: 840px;
+      margin: 0 auto;
+    }
+
+    .features-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: color-mix(in srgb, var(--col) 12%, transparent);
+      border: 1px solid color-mix(in srgb, var(--col) 12%, transparent);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .feat {
+      padding: 40px 32px;
+      background: var(--bg);
+      transition: background 0.5s;
+      text-align: center;
+    }
+
+    .feat-icon {
+      font-size: 24px;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .feat-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--col);
+      margin-bottom: 8px;
+      transition: color 0.5s;
+    }
+
+    .feat-desc {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--col);
+      opacity: 0.65;
+      line-height: 1.7;
+      transition: color 0.5s;
+    }
+
+    /* ─── FOOTER ────────────────────────────────────────────────── */
+    footer {
+      padding: 24px 40px;
+      border-top: 1px solid color-mix(in srgb, var(--col) 10%, transparent);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      transition: border-color 0.5s;
+    }
+
+    footer span {
+      font-family: 'Outfit', sans-serif;
+      font-size: 11px;
+      color: var(--col);
+      opacity: 0.4;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .footer-links a {
+      font-family: 'Outfit', sans-serif;
+      font-size: 11px;
+      color: var(--col);
+      opacity: 0.45;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+
+    .footer-links a:hover {
+      opacity: 0.85;
+    }
+
+    /* ─── ANIMATIONS ─────────────────────────────────────────────── */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.shown {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ─── RESPONSIVE ─────────────────────────────────────────────── */
+    @media (max-width: 640px) {
+      .features-list {
+        grid-template-columns: 1fr;
+      }
+
+      footer {
+        padding: 20px 24px;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 12px;
+      }
+
+      #features,
+      #themes {
+        padding: 48px 24px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav class="topnav">
+    <div class="lang-switcher">
+      <button class="lang-btn active" id="btnEN" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" id="btnPL" onclick="setLang('pl')">PL</button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <p class="hero-eyebrow" data-i18n="hero_eyebrow">Mobile app coming soon</p>
+    <h1 class="hero-title">Be Happy<br>Everyday</h1>
+    <p class="hero-tagline" data-i18n="hero_tagline">Your daily dose of positivity. Coming soon to iOS and Android.</p>
+
+    <!-- COMING SOON STORE BADGES (STATIC, NOT CLICKABLE) -->
+    <div class="badge-container">
+      <span class="badge-label" data-i18n="waitlist_badge_label">Coming soon to</span>
+      <div class="store-badges">
+        <span class="store-badge">
+          <svg viewBox="0 0 24 24">
+            <path fill="currentColor"
+              d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
+          </svg>
+          App Store
+        </span>
+        <span class="store-badge">
+          <svg viewBox="0 0 24 24">
+            <path fill="#EA4335"
+              d="M3.18 1.34C2.95 1.57 2.83 1.92 2.83 2.38v19.24c0 .46.12.81.35 1.04l.06.06 10.78-10.78v-.25L3.24 1.28l-.06.06z" />
+            <path fill="#FBBC05"
+              d="M17.6 15.6l-3.59-3.6v-.25l3.59-3.59.08.05 4.26 2.42c1.22.69 1.22 1.82 0 2.51L17.6 15.6z" />
+            <path fill="#34A853" d="M17.68 15.55L14.02 11.9 3.18 22.74c.4.42 1.06.47 1.8.05l12.7-7.24" />
+            <path fill="#4285F4" d="M17.68 8.45L4.98 1.21C4.24.79 3.58.84 3.18 1.26L14.02 12.1l3.66-3.65z" />
+          </svg>
+          Google Play
+        </span>
+      </div>
+    </div>
+
+    <!-- EMOJI INTERACTION -->
+    <div class="hero-quote-wrap">
+      <p class="hero-quote" id="heroEmoji">🌿</p>
+      <p class="hero-quote-hint" data-i18n="emoji_hint">tap to change emoji</p>
+    </div>
+  </section>
+
+  <!-- THEME PICKER -->
+  <section id="themes">
+    <p class="themes-eyebrow reveal" data-i18n="themes_label">8 colour themes</p>
+    <div class="swatches reveal">
+      <button class="swatch active" data-theme="matcha" style="background:#D8E8D0;" aria-label="Matcha">🍵</button>
+      <button class="swatch" data-theme="cherry" style="background:#FFE5F0;" aria-label="Cherry Blossom">🌸</button>
+      <button class="swatch" data-theme="lavender" style="background:#DDD5EE;" aria-label="Lavender">🪻</button>
+      <button class="swatch" data-theme="mango" style="background:#FFE8B0;" aria-label="Mango">🥭</button>
+      <button class="swatch" data-theme="ocean" style="background:#A8D0E8;" aria-label="Ocean Blue">🌊</button>
+      <button class="swatch" data-theme="jasmine" style="background:#FAF0E3;" aria-label="Jasmine Tea">☕</button>
+      <button class="swatch" data-theme="forest" style="background:#B8D4C0;" aria-label="Tropical Forest">🌲</button>
+      <button class="swatch" data-theme="coconut" style="background:#E8D5B8;" aria-label="Coconut">🥥</button>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section id="features">
+    <div class="features-list">
+      <div class="feat reveal">
+        <span class="feat-icon">🔔</span>
+        <h3 class="feat-title" data-i18n="feat1_title">Daily notification</h3>
+        <p class="feat-desc" data-i18n="feat1_desc">You decide when to receive your daily message. Over morning coffee or an evening tea.</p>
+      </div>
+      <div class="feat reveal">
+        <span class="feat-icon">📱</span>
+        <h3 class="feat-title" data-i18n="feat2_title">Home screen widget</h3>
+        <p class="feat-desc" data-i18n="feat2_desc">Keep the inspiration visible without even opening the app — on iOS & Android.</p>
+      </div>
+      <div class="feat reveal">
+        <span class="feat-icon">🌍</span>
+        <h3 class="feat-title" data-i18n="feat3_title">Multi-language</h3>
+        <p class="feat-desc" data-i18n="feat3_desc">The app automatically detects your language and serves positive thoughts in your native tongue.</p>
+      </div>
+      <div class="feat reveal">
+        <span class="feat-icon">↗</span>
+        <h3 class="feat-title" data-i18n="feat4_title">Share a thought</h3>
+        <p class="feat-desc" data-i18n="feat4_desc">Instantly generate and export a gorgeous, minimalist graphic to share with friends.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span>Be Happy Everyday</span>
+    <nav class="footer-links">
+      <a href="privacy.html" data-i18n="footer_privacy">Privacy Policy</a>
+      <a href="terms.html" data-i18n="footer_terms">Terms of Use</a>
+    </nav>
+    <span>© 2026</span>
+  </footer>
+
+  <script>
+    // ── i18n ─────────────────────────────────────────────────────────
+    const strings = {
+      en: {
+        hero_eyebrow: 'Mobile app coming soon',
+        hero_tagline: 'Get your daily dose of positivity right on your phone. Coming soon to iOS and Android.',
+        emoji_hint: 'tap to change emoji',
+        themes_label: '8 calming colour themes',
+        feat1_title: 'Daily notification',
+        feat1_desc: 'You decide when to receive your daily message. Over morning coffee or an evening tea.',
+        feat2_title: 'Home screen widget',
+        feat2_desc: 'Keep the inspiration visible without even opening the app — on iOS & Android.',
+        feat3_title: 'Multi-language',
+        feat3_desc: 'The app automatically detects your language and serves positive thoughts in your native tongue.',
+        feat4_title: 'Share a thought',
+        feat4_desc: 'Instantly generate and export a gorgeous, minimalist graphic to share with friends.',
+        footer_privacy: 'Privacy Policy',
+        footer_terms: 'Terms of Use',
+        waitlist_badge_label: 'Coming soon to'
+      },
+      pl: {
+        hero_eyebrow: 'Aplikacja wkrótce w sklepach',
+        hero_tagline: 'Odbieraj codzienną dawkę pozytywnej energii na swoim telefonie. Wkrótce na iOS i Android.',
+        emoji_hint: 'kliknij, by zmienić emoji',
+        themes_label: '8 kojących motywów kolorystycznych',
+        feat1_title: 'Powiadomienie o wybranej porze',
+        feat1_desc: 'Sam decydujesz kiedy chcesz otrzymać swoją wiadomość. Rano przy kawie lub wieczorem przy herbacie.',
+        feat2_title: 'Widget na ekranie głównym',
+        feat2_desc: 'Inspirujące słowa widoczne bez potrzeby uruchamiania aplikacji — na iOS i Android.',
+        feat3_title: 'Wielojęzyczna',
+        feat3_desc: 'Aplikacja automatycznie dostosowuje się do języka Twojego telefonu i serwuje treści po polsku lub angielsku.',
+        feat4_title: 'Udostępnij myśl',
+        feat4_desc: 'Wygeneruj jednym kliknięciem piękną, minimalistyczną grafikę gotową do podzielenia się z bliskimi.',
+        footer_privacy: 'Polityka prywatności',
+        footer_terms: 'Regulamin',
+        waitlist_badge_label: 'Wkrótce w'
+      }
+    };
+
+    let currentLang = localStorage.getItem('bhe_lang') || 'en';
+
+    function setLang(lang) {
+      currentLang = lang;
+      localStorage.setItem('bhe_lang', lang);
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n;
+        if (strings[lang][key]) el.textContent = strings[lang][key];
+      });
+
+      document.getElementById('btnEN').classList.toggle('active', lang === 'en');
+      document.getElementById('btnPL').classList.toggle('active', lang === 'pl');
+      document.documentElement.lang = lang;
+    }
+
+    // ── EMOJI ROTATION ───────────────────────────────────────────────
+    const emojis = [
+      '✈️', '🚀', '🚗', '⛵', '🛶', '🛸',
+      '🍎', '🍾', '🎉', '🎊', '🎈', '🎆',
+      '🌿', '🌸', '🌻', '🌼', '🌷', '🌹', '🌺', '🌾',
+      '🌲', '🌳', '🌱', '🍀', '🍁', '🍂', '🍃', '🍄',
+      '🦁', '🦋', '🐝', '🐟', '🐣', '🐞', '🦌', '🦚', '🦜',
+      '📜', '🔑', '🔔', '🔋', '🔬', '🔮', '📖', '📚', '📝', '💡', '📸',
+      '☀️', '🌈', '✨', '🌟', '🌙', '🌞', '⚡', '⛅', '🌠', '🌀', '🌌',
+      '🏁', '🏃', '🏅', '🏆', '🎯', '🎲', '😄', '💪', '💚', '💛', '💜', '🧡',
+    ];
+
+    let ei = Math.floor(Math.random() * emojis.length);
+    let emojiTimer = null;
+    const heroE = document.getElementById('heroEmoji');
+    heroE.textContent = emojis[ei];
+
+    function nextEmoji() {
+      heroE.style.opacity = '0';
+      heroE.style.transform = 'scale(0.6)';
+      setTimeout(() => {
+        let newEi;
+        do {
+          newEi = Math.floor(Math.random() * emojis.length);
+        } while (newEi === ei);
+        ei = newEi;
+        heroE.textContent = emojis[ei];
+        heroE.style.opacity = '';
+        heroE.style.transform = '';
+      }, 280);
+    }
+
+    function scheduleEmoji() {
+      clearInterval(emojiTimer);
+      emojiTimer = setInterval(nextEmoji, 7000);
+    }
+
+    heroE.addEventListener('click', () => { nextEmoji(); scheduleEmoji(); });
+    scheduleEmoji();
+
+    // ── THEMES ───────────────────────────────────────────────────────
+    const themes = {
+      matcha: { bg: '#F5FAF0', btn: '#D8E8D0', col: '#6B8B5A' },
+      cherry: { bg: '#FFF5FA', btn: '#FFE5F0', col: '#B85A7A' },
+      lavender: { bg: '#F6F4FA', btn: '#DDD5EE', col: '#6B5B8B' },
+      mango: { bg: '#FFF8E0', btn: '#FFE8B0', col: '#CC8F3A' },
+      ocean: { bg: '#D8E8F0', btn: '#A8D0E8', col: '#4A7BA5' },
+      jasmine: { bg: '#FFFEF8', btn: '#FAF0E3', col: '#A8956A' },
+      forest: { bg: '#E8F0EC', btn: '#B8D4C0', col: '#1B4D2E' },
+      coconut: { bg: '#F5F0E8', btn: '#E8D5B8', col: '#8B6B4A' },
+    };
+
+    const root = document.documentElement;
+
+    function applyTheme(name) {
+      const t = themes[name];
+      root.style.setProperty('--bg', t.bg);
+      root.style.setProperty('--btn', t.btn);
+      root.style.setProperty('--col', t.col);
+      document.querySelector('meta[name="theme-color"]')?.setAttribute('content', t.bg);
+    }
+
+    document.querySelectorAll('.swatch').forEach(sw => {
+      sw.addEventListener('click', () => {
+        document.querySelectorAll('.swatch').forEach(s => {
+          s.classList.remove('active');
+          s.style.boxShadow = '';
+        });
+        sw.classList.add('active');
+        const t = themes[sw.dataset.theme];
+        sw.style.boxShadow = `0 0 0 3px ${t.bg}, 0 0 0 5px ${t.col}`;
+        applyTheme(sw.dataset.theme);
+        localStorage.setItem('bhe_theme', sw.dataset.theme);
+      });
+    });
+
+    // Wczytaj zapisany motyw
+    const savedTheme = localStorage.getItem('bhe_theme');
+    if (savedTheme && themes[savedTheme]) {
+      applyTheme(savedTheme);
+      const sw = document.querySelector(`.swatch[data-theme="${savedTheme}"]`);
+      if (sw) {
+        document.querySelectorAll('.swatch').forEach(s => { s.classList.remove('active'); s.style.boxShadow = ''; });
+        sw.classList.add('active');
+        const t = themes[savedTheme];
+        sw.style.boxShadow = `0 0 0 3px ${t.bg}, 0 0 0 5px ${t.col}`;
+      }
+    }
+
+    // Initialize Language
+    setLang(currentLang);
+
+    // ── SCROLL REVEAL ────────────────────────────────────────────────
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('shown'); });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  </script>
+</body>
+
+</html>
