@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Polityka prywatności — Be Happy Everyday</title>
+    <title>Privacy Policy — Be Happy Everyday</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -64,7 +64,11 @@
             max-width: 660px;
             margin: 0 auto;
             padding: 64px 40px 100px;
+        }
+
+        .header-group {
             text-align: center;
+            margin-bottom: 48px;
         }
 
         .doc-label {
@@ -88,43 +92,55 @@
             font-size: 12px;
             color: var(--col);
             opacity: 0.35;
-            margin-bottom: 48px;
         }
 
-        .placeholder-notice {
-            background: var(--btn);
-            border-radius: 10px;
-            padding: 20px 24px;
+        .intro-text {
+            font-size: 14px;
+            font-weight: 300;
+            line-height: 1.75;
+            opacity: 0.75;
             margin-bottom: 40px;
-            font-size: 13px;
-            color: var(--col);
-            line-height: 1.6;
-            transition: background 0.4s;
-        }
-
-        .placeholder-notice strong {
-            display: block;
-            font-weight: 500;
-            margin-bottom: 4px;
+            text-align: left;
         }
 
         .doc-section {
             margin-bottom: 40px;
+            text-align: left;
         }
 
         .doc-section h2 {
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--col);
+            margin-bottom: 16px;
+            border-bottom: 1px solid color-mix(in srgb, var(--col) 15%, transparent);
+            padding-bottom: 8px;
+        }
+
+        .doc-section h3 {
             font-size: 14px;
             font-weight: 500;
             color: var(--col);
-            margin-bottom: 10px;
+            margin: 20px 0 10px 0;
+            opacity: 0.9;
         }
 
-        .doc-section p {
-            font-size: 13px;
+        .doc-section p, .doc-section ul {
+            font-size: 13.5px;
             font-weight: 300;
             color: var(--col);
-            opacity: 0.6;
+            opacity: 0.75;
             line-height: 1.75;
+            margin-bottom: 12px;
+        }
+
+        .doc-section ul {
+            padding-left: 20px;
+            margin-bottom: 16px;
+        }
+
+        .doc-section li {
+            margin-bottom: 8px;
         }
 
         hr {
@@ -193,68 +209,71 @@
                 stroke-linecap="round">
                 <polyline points="15 18 9 12 15 6" />
             </svg>
-            Powrót
+            Back
         </a>
     </nav>
 
     <main>
-        <p class="doc-label">Dokument prawny</p>
-        <h1>Polityka prywatności</h1>
-        <p class="doc-date">Ostatnia aktualizacja: — (zostanie uzupełnione)</p>
-
-        <div class="placeholder-notice">
-            <strong>📝 Treść do uzupełnienia</strong>
-            Poniższe sekcje są placeholderami. Treść zostanie dostarczona i wstawiona.
+        <div class="header-group">
+            <p class="doc-label">Legal Document</p>
+            <h1>Privacy Policy</h1>
+            <p class="doc-date">Last updated: June 7, 2026</p>
         </div>
 
-        <div class="doc-section">
-            <h2>1. Administrator danych osobowych</h2>
-            <p>[Treść do uzupełnienia]</p>
+        <div class="intro-text">
+            <p>This document defines the Privacy Policy for using the mobile application <strong>"Be Happy Everyday"</strong> (hereinafter referred to as the "App") and the website <strong>behappyeveryday365.com</strong> (hereinafter referred to as the "Website"), owned and developed by Kamil Misztal (hereinafter referred to as the "Developer"). The App is available to users on the Google Play Store (Android) and Apple App Store (iOS).</p>
+            <br>
+            <p>Downloading, installing, accessing, or using the App or the Website constitutes consent to the Privacy Policy and acceptance of the Terms and Conditions. If you do not agree to these terms, please do not use the Website and do not install or use the App.</p>
         </div>
+
         <hr />
+
         <div class="doc-section">
-            <h2>2. Jakie dane zbieramy</h2>
-            <p>[Treść do uzupełnienia]</p>
+            <h2>PART II: PRIVACY POLICY</h2>
+
+            <h3>§ 5. Zero-Data Collection Policy</h3>
+            <p>1. The Developer is committed to protecting your privacy. Both the App and the Website are designed in a way that <strong>does not collect, transmit, or share any personal data</strong> on external servers.</p>
+            <p>2. Neither the App nor the Website uses any third-party analytics tools (e.g., Google Analytics, Firebase), tracking scripts, or advertising networks. The Website is a static informational site and does not use cookies for tracking, profiling, or advertising purposes.</p>
+
+            <h3>§ 6. Permissions Required (App Only)</h3>
+            <p>To function properly, the App requires the user to grant the following local permissions on their mobile device:</p>
+            <ul>
+                <li><strong>Notifications (POST_NOTIFICATIONS):</strong> To display daily quotes on the lock screen and notification bar.</li>
+                <li><strong>Run at startup (RECEIVE_BOOT_COMPLETED):</strong> To schedule local notifications after restarting the device.</li>
+                <li><strong>Ignore Battery Optimization (REQUEST_IGNORE_BATTERY_OPTIMIZATIONS):</strong> To prevent the OS from suspending background tasks for quote scheduling.</li>
+            </ul>
+
+            <h3>§ 7. GDPR Compliance and User Rights</h3>
+            <p>1. In accordance with the General Data Protection Regulation (GDPR) and other global privacy laws, since neither the App nor the Website collects, stores, or transmits personal data to external servers, the Developer does not hold any personal data about you that could be exported, rectified, or deleted.</p>
+            <p>2. To delete all locally stored preferences, the user can simply uninstall the App, clear the App's data in the device settings, or clear their browser's cache and cookies.</p>
         </div>
+
         <hr />
+
         <div class="doc-section">
-            <h2>3. Cel i podstawa przetwarzania danych</h2>
-            <p>[Treść do uzupełnienia]</p>
-        </div>
-        <hr />
-        <div class="doc-section">
-            <h2>4. Udostępnianie danych</h2>
-            <p>[Treść do uzupełnienia]</p>
-        </div>
-        <hr />
-        <div class="doc-section">
-            <h2>5. Okres przechowywania danych</h2>
-            <p>[Treść do uzupełnienia]</p>
-        </div>
-        <hr />
-        <div class="doc-section">
-            <h2>6. Przysługujące Ci prawa</h2>
-            <p>[Treść do uzupełnienia]</p>
-        </div>
-        <hr />
-        <div class="doc-section">
-            <h2>7. Pliki cookie i technologie śledzące</h2>
-            <p>[Treść do uzupełnienia]</p>
-        </div>
-        <hr />
-        <div class="doc-section">
-            <h2>8. Kontakt</h2>
-            <p>[Treść do uzupełnienia]</p>
+            <h2>PART III: FINAL PROVISIONS</h2>
+
+            <h3>§ 8. Intellectual Property</h3>
+            <p>All content within the App and the Website, including motivational quotes, design, code, domain name, logos, graphics, and any other symbols, is owned by Kamil Misztal and is protected by applicable intellectual property laws. The App and Website are licensed/provided for personal, non-commercial use only.</p>
+
+            <h3>§ 9. Applicable Law and Jurisdiction</h3>
+            <p>1. These Terms and Conditions are governed by the laws of Poland.</p>
+            <p>2. Any disputes arising from the use of the App or the Website will be resolved by the competent Polish courts.</p>
+            <p>3. For users residing in the European Union, the European Commission provides an online dispute resolution platform available at: <a href="http://ec.europa.eu/consumers/odr/" target="_blank" style="color: var(--col);">http://ec.europa.eu/consumers/odr/</a>.</p>
+
+            <h3>§ 10. Contact and Changes to the Terms</h3>
+            <p>1. Any technical questions, feedback, or complaints regarding the App or the Website should be sent to: <strong>behappyeverydayy365@gmail.com</strong>.</p>
+            <p>2. The Developer reserves the right to update these Terms and Conditions and Privacy Policy. Continued use of the App or the Website after changes constitutes acceptance.</p>
         </div>
     </main>
 
     <footer>
         <span>Be Happy Everyday</span>
         <nav class="footer-links">
-            <a href="privacy.html">Polityka prywatności</a>
-            <a href="terms.html">Regulamin</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Service</a>
         </nav>
-        <span>© 2025</span>
+        <span>© 2026</span>
     </footer>
 
     <script>
