@@ -77,6 +77,9 @@
       }
     }
 
+    /* Odstępy: sekcje mają po 56px góra/dół (112px między sekcjami, na telefonie
+       40px → 80px), napis sekcji → treść 32px. */
+
     /* ─── HERO ──────────────────────────────────────────────────── */
     #hero {
       display: flex;
@@ -84,7 +87,7 @@
       align-items: center;
       justify-content: center;
       min-height: calc(80vh - 56px);
-      padding: 60px 24px 40px;
+      padding: 60px 24px 56px;
       text-align: center;
     }
 
@@ -211,7 +214,7 @@
 
     /* ─── THEME PICKER ──────────────────────────────────────────── */
     #themes {
-      padding: 60px 40px;
+      padding: 56px 40px;
       text-align: center;
     }
 
@@ -222,7 +225,7 @@
       letter-spacing: 0.16em;
       color: var(--col);
       opacity: 0.45;
-      margin-bottom: 28px;
+      margin-bottom: 32px;
     }
 
     .swatches {
@@ -256,7 +259,7 @@
     /* ─── APP SCREENS ───────────────────────────────────────────── */
     #screens {
       --phone: clamp(170px, 19vw, 236px);
-      padding: 24px 40px 80px;
+      padding: 56px 40px;
       max-width: 1160px;
       margin: 0 auto;
       text-align: center;
@@ -269,7 +272,7 @@
       letter-spacing: 0.16em;
       color: var(--col);
       opacity: 0.45;
-      margin-bottom: 48px;
+      margin-bottom: 32px;
     }
 
     .screens-row {
@@ -351,7 +354,7 @@
     @media (max-width: 640px) {
       #screens {
         --phone: 62vw;
-        padding: 12px 0 64px;
+        padding: 40px 0;
       }
 
       .screens-row {
@@ -360,7 +363,7 @@
         gap: 22px;
         overflow-x: auto;
         scroll-snap-type: x mandatory;
-        padding: 8px 19vw 40px;
+        padding: 0 19vw;
         scrollbar-width: none;
       }
 
@@ -376,7 +379,7 @@
 
     /* ─── FEATURES ──────────────────────────────────────────────── */
     #features {
-      padding: 60px 40px 80px;
+      padding: 56px 40px 96px;
       max-width: 840px;
       margin: 0 auto;
     }
@@ -499,7 +502,16 @@
 
       #features,
       #themes {
-        padding: 48px 24px;
+        padding: 40px 24px;
+      }
+
+      #hero {
+        min-height: auto;
+        padding-bottom: 40px;
+      }
+
+      #features {
+        padding-bottom: 64px;
       }
     }
   </style>
