@@ -253,6 +253,127 @@
       transform: scale(1.1);
     }
 
+    /* ─── APP SCREENS ───────────────────────────────────────────── */
+    #screens {
+      --phone: clamp(170px, 19vw, 236px);
+      padding: 24px 40px 80px;
+      max-width: 1160px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .screens-eyebrow {
+      font-family: 'Outfit', sans-serif;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--col);
+      opacity: 0.45;
+      margin-bottom: 48px;
+    }
+
+    .screens-row {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: clamp(20px, 3vw, 40px);
+    }
+
+    .screen {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 22px;
+    }
+
+    /* cienka ciemna ramka telefonu, bez cienia */
+    .phone {
+      width: var(--phone);
+      padding: calc(var(--phone) * 0.014);
+      background: #1C1C1E;
+      border-radius: calc(var(--phone) * 0.149);
+    }
+
+    .phone-screen {
+      position: relative;
+      aspect-ratio: 1206 / 2622;
+      border-radius: calc(var(--phone) * 0.135);
+      overflow: hidden;
+      background: var(--bg);
+      transition: background 0.5s;
+    }
+
+    .phone-screen img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    /* nowy zrzut po zmianie motywu przenika nad starym, w tempie koloru strony */
+    .phone-screen img.incoming {
+      animation: screenIn 0.5s ease both;
+    }
+
+    @keyframes screenIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    .screen-caption {
+      font-family: 'Outfit', sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--col);
+      max-width: var(--phone);
+      line-height: 1.4;
+      transition: color 0.5s;
+    }
+
+    @media (max-width: 900px) {
+      #screens {
+        --phone: clamp(170px, 34vw, 240px);
+      }
+
+      .screens-row {
+        flex-wrap: wrap;
+        row-gap: 48px;
+      }
+    }
+
+    /* na telefonie: przewijany rząd, jeden ekran na raz z zajawką kolejnego */
+    @media (max-width: 640px) {
+      #screens {
+        --phone: 62vw;
+        padding: 12px 0 64px;
+      }
+
+      .screens-row {
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        gap: 22px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        padding: 8px 19vw 40px;
+        scrollbar-width: none;
+      }
+
+      .screens-row::-webkit-scrollbar {
+        display: none;
+      }
+
+      .screen {
+        flex: 0 0 auto;
+        scroll-snap-align: center;
+      }
+    }
+
     /* ─── FEATURES ──────────────────────────────────────────────── */
     #features {
       padding: 60px 40px 80px;
@@ -437,13 +558,36 @@
     <p class="themes-eyebrow reveal" data-i18n="themes_label">8 colour themes</p>
     <div class="swatches reveal">
       <button class="swatch active" data-theme="matcha" style="background:#D8E8D0;" aria-label="Matcha">🍵</button>
+      <button class="swatch" data-theme="ocean" style="background:#A8D0E8;" aria-label="Ocean Blue">🌊</button>
+      <button class="swatch" data-theme="coconut" style="background:#E8D5B8;" aria-label="Coconut">🥥</button>
+      <button class="swatch" data-theme="jasmine" style="background:#FAF0E3;" aria-label="Jasmine Tea">🍃</button>
+      <button class="swatch" data-theme="forest" style="background:#B8D4C0;" aria-label="Tropical Forest">🌳</button>
+      <button class="swatch" data-theme="mango" style="background:#FFE8B0;" aria-label="Mango">🥭</button>
       <button class="swatch" data-theme="cherry" style="background:#FFE5F0;" aria-label="Cherry Blossom">🌸</button>
       <button class="swatch" data-theme="lavender" style="background:#DDD5EE;" aria-label="Lavender">🪻</button>
-      <button class="swatch" data-theme="mango" style="background:#FFE8B0;" aria-label="Mango">🥭</button>
-      <button class="swatch" data-theme="ocean" style="background:#A8D0E8;" aria-label="Ocean Blue">🌊</button>
-      <button class="swatch" data-theme="jasmine" style="background:#FAF0E3;" aria-label="Jasmine Tea">☕</button>
-      <button class="swatch" data-theme="forest" style="background:#B8D4C0;" aria-label="Tropical Forest">🌲</button>
-      <button class="swatch" data-theme="coconut" style="background:#E8D5B8;" aria-label="Coconut">🥥</button>
+    </div>
+  </section>
+
+  <!-- APP SCREENS: zrzuty podmieniane razem z motywem (applyTheme) -->
+  <section id="screens">
+    <p class="screens-eyebrow reveal" data-i18n="screens_label">A look inside the app</p>
+    <div class="screens-row">
+      <figure class="screen reveal">
+        <div class="phone"><div class="phone-screen" data-screen="notification"><img src="screens/notification-pink.webp" alt="Daily notification on the lock screen" loading="lazy"></div></div>
+        <figcaption class="screen-caption" data-i18n="screen4">At the hour you choose</figcaption>
+      </figure>
+      <figure class="screen reveal">
+        <div class="phone"><div class="phone-screen" data-screen="quote"><img src="screens/quote-matcha.webp" alt="Daily quote in the app" loading="lazy"></div></div>
+        <figcaption class="screen-caption" data-i18n="screen1">A new thought every day</figcaption>
+      </figure>
+      <figure class="screen reveal">
+        <div class="phone"><div class="phone-screen" data-screen="widget"><img src="screens/widget-pink-matcha.webp" alt="Home screen widget" loading="lazy"></div></div>
+        <figcaption class="screen-caption" data-i18n="screen2">Right on your home screen</figcaption>
+      </figure>
+      <figure class="screen reveal">
+        <div class="phone"><div class="phone-screen" data-screen="settings"><img src="screens/settings-matcha.webp" alt="App settings: language and colour" loading="lazy"></div></div>
+        <figcaption class="screen-caption" data-i18n="screen3">Your language, your colour</figcaption>
+      </figure>
     </div>
   </section>
 
@@ -490,6 +634,11 @@
         hero_tagline: 'Get your daily dose of positivity right on your phone. Coming soon to iOS and Android.',
         emoji_hint: 'tap to change emoji',
         themes_label: '8 calming colour themes',
+        screens_label: 'A look inside the app',
+        screen1: 'A new thought every day',
+        screen2: 'Right on your home screen',
+        screen3: 'Your language, your colour',
+        screen4: 'At the hour you choose',
         feat1_title: 'Daily notification',
         feat1_desc: 'You decide when to receive your daily message. Over morning coffee or an evening tea.',
         feat2_title: 'Home screen widget',
@@ -506,6 +655,11 @@
         hero_tagline: 'Odbieraj codzienną dawkę pozytywnej energii na swoim telefonie. Wkrótce na iOS i Android.',
         emoji_hint: 'kliknij, by zmienić emoji',
         themes_label: '8 kojących motywów kolorystycznych',
+        screens_label: 'Zajrzyj do aplikacji',
+        screen1: 'Nowa myśl każdego dnia',
+        screen2: 'Prosto na ekranie głównym',
+        screen3: 'Twój język, Twój kolor',
+        screen4: 'O godzinie, którą wybierzesz',
         feat1_title: 'Powiadomienie o wybranej porze',
         feat1_desc: 'Sam decydujesz kiedy chcesz otrzymać swoją wiadomość. Rano przy kawie lub wieczorem przy herbacie.',
         feat2_title: 'Widget na ekranie głównym',
@@ -532,6 +686,7 @@
       document.getElementById('btnEN').classList.toggle('active', lang === 'en');
       document.getElementById('btnPL').classList.toggle('active', lang === 'pl');
       document.documentElement.lang = lang;
+      if (typeof updateScreens === 'function' && document.querySelector('.phone-screen')) updateScreens();
     }
 
     // ── EMOJI ROTATION ───────────────────────────────────────────────
@@ -588,12 +743,69 @@
 
     const root = document.documentElement;
 
+    // Tapeta pod widgetem i powiadomieniem: na przemian różowa i zielona, tak
+    // żeby widget nie zlewał się z tłem. ?wp=pink / ?wp=green wymusza jedną
+    // wersję dla wszystkich motywów (do porównania).
+    let currentTheme = 'matcha';
+    const wallpaperFor = { matcha: 'pink', ocean: 'pink', forest: 'pink', lavender: 'pink',
+      cherry: 'green', mango: 'green', jasmine: 'green', coconut: 'green' };
+    const forcedWp = new URLSearchParams(location.search).get('wp');
+
+    // Polska wersja strony pokazuje polskie zrzuty. Polskie powiadomienie jest
+    // tylko na różowej tapecie (zielonej tapety nie da się już odtworzyć).
+    function screenSrc(kind, theme, lang = currentLang) {
+      const wp = (forcedWp === 'pink' || forcedWp === 'green') ? forcedWp : wallpaperFor[theme];
+      const pl = lang === 'pl' ? '-pl' : '';
+      if (kind === 'notification') return pl ? 'screens/notification-pink-pl.webp' : `screens/notification-${wp}.webp`;
+      if (kind === 'widget') return `screens/widget-${wp}-${theme}${pl}.webp`;
+      return `screens/${kind}-${theme}${pl}.webp`;
+    }
+
+    // Nowy zrzut nakłada się na stary i przenika w tym samym tempie co kolor
+    // strony; kolejne telefony startują chwilę po sobie (animacja w CSS).
+    function updateScreens(theme = currentTheme) {
+      currentTheme = theme;
+      document.querySelectorAll('.phone-screen[data-screen]').forEach((screen, i) => {
+        const src = screenSrc(screen.dataset.screen, theme);
+        const current = screen.lastElementChild;
+        if (current.getAttribute('src') === src) return;
+        const img = new Image();
+        img.alt = current.alt;
+        img.className = 'incoming';
+        const show = () => setTimeout(() => {
+          screen.appendChild(img);
+          setTimeout(() => {
+            while (screen.firstElementChild !== img) screen.firstElementChild.remove();
+            // gdyby karta była w tle i animacja nie ruszyła, zrzut i tak zostaje widoczny
+            img.classList.remove('incoming');
+          }, 550);
+        }, i * 40);
+        img.onload = show;
+        img.src = src;
+      });
+    }
+
+    // Po załadowaniu strony dociągamy w tle zrzuty pozostałych motywów, żeby
+    // przełączanie kolorów nie czekało na sieć.
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        Object.keys(themes).forEach(theme =>
+          ['quote', 'widget', 'settings', 'notification'].forEach(kind => { new Image().src = screenSrc(kind, theme); }));
+        // drugi język dopiero po chwili, żeby nie spowalniać pierwszego wrażenia
+        setTimeout(() => Object.keys(themes).forEach(theme =>
+          ['quote', 'widget', 'settings', 'notification'].forEach(kind => {
+            new Image().src = screenSrc(kind, theme, currentLang === 'pl' ? 'en' : 'pl');
+          })), 3000);
+      }, 1500);
+    });
+
     function applyTheme(name) {
       const t = themes[name];
       root.style.setProperty('--bg', t.bg);
       root.style.setProperty('--btn', t.btn);
       root.style.setProperty('--col', t.col);
       document.querySelector('meta[name="theme-color"]')?.setAttribute('content', t.bg);
+      updateScreens(name);
     }
 
     document.querySelectorAll('.swatch').forEach(sw => {
@@ -621,6 +833,8 @@
         const t = themes[savedTheme];
         sw.style.boxShadow = `0 0 0 3px ${t.bg}, 0 0 0 5px ${t.col}`;
       }
+    } else {
+      updateScreens('matcha');
     }
 
     // Initialize Language
